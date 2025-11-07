@@ -1,0 +1,13 @@
+config:
+  target: 'http://localhost:3001'  # Địa chỉ của server cần test
+  phases:
+    - duration: 60   # Thời gian test là 60 giây
+      arrivalRate: 1000000  # Số lượng yêu cầu gửi vào mỗi giây
+      rampTo: 50       # Tăng lên 50 yêu cầu mỗi giây trong suốt quá trình
+      ramping: true    # Tăng dần tần suất yêu cầu
+scenarios:
+  - flow:
+      - post:
+          url: '/create?url=http://example.com'  # Địa chỉ tạo URL ngắn
+      - get:
+          url: '/short/:id'  # Địa chỉ redirect tới URL ngắn
